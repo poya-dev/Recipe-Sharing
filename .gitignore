@@ -1,0 +1,16 @@
+# Ignore the virtual environment
+backend/env/
+
+# Ignore Node.js dependencies
+frontend/node_modules/
+
+# Ignore other unnecessary files
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+*.log
+*.sqlite3
+
+# Ignore environment variables
+.env
