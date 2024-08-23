@@ -20,7 +20,7 @@ const RecipeList = ({ recipes }) => {
             <CardMedia
               component="img"
               height="140"
-              image={'https://placehold.co/600x400@2x.png'}
+              image={recipe.image}
               alt={recipe.title}
             />
             <CardContent>

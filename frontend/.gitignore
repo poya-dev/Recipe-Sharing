@@ -5,6 +5,13 @@
 /.pnp
 .pnp.js
 
+# backend
+*.pyc
+__pycache__/
+db.sqlite3
+media/
+.env
+
 # testing
 /coverage
 
