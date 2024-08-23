@@ -4,6 +4,7 @@ import { CssBaseline, Container } from '@mui/material';
 
 import Navbar from './components/Navbar';
 import Login from './components/Login';
+import SignUp from './components/Sign-Up';
 
 const App = () => {
   return (
@@ -16,7 +17,7 @@ const App = () => {
           <Route path="/recipes" element={<p>Recipes</p>} />
           <Route path="/create-recipe" element={<p>Create Recipe</p>} />
           <Route path="/login" element={<Login />} />
-          <Route path="/sign-up" element={<p>Sign-Up</p>} />
+          <Route path="/sign-up" element={<SignUp />} />
         </Routes>
       </Container>
     </Router>

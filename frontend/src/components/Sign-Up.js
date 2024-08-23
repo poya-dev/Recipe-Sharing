@@ -1,3 +1,4 @@
+// src/components/SignUp.js
 import React, { useState } from 'react';
 import {
   Button,
@@ -10,17 +11,18 @@ import {
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import useAuthStore from '../store/authStore';
 
-const Login = () => {
+const SignUp = () => {
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { login, error, loading } = useAuthStore();
+  const { signUp, error, loading } = useAuthStore();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const success = await login(username, password);
+    const success = await signUp(username, email, password);
     if (success) {
-      navigate('/');
+      navigate('/login');
     }
   };
 
@@ -35,9 +37,9 @@ const Login = () => {
         }}
       >
         <Typography component="h1" variant="h5">
-          Log in
+          Sign up
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}>
           <TextField
             margin="normal"
             required
@@ -54,11 +56,22 @@ const Login = () => {
             margin="normal"
             required
             fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
             name="password"
             label="Password"
             type="password"
             id="password"
-            autoComplete="current-password"
+            autoComplete="new-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -69,7 +82,7 @@ const Login = () => {
             sx={{ mt: 3, mb: 2 }}
             disabled={loading}
           >
-            Log In
+            Sign Up
           </Button>
           {error && (
             <Typography color="error" align="center">
@@ -77,8 +90,8 @@ const Login = () => {
             </Typography>
           )}
           <Box sx={{ textAlign: 'center' }}>
-            <Link component={RouterLink} to="/sign-up" variant="body2">
-              {"Don't have an account? Sign Up"}
+            <Link component={RouterLink} to="/login" variant="body2">
+              {'Already have an account? Log in'}
             </Link>
           </Box>
         </Box>
@@ -87,4 +100,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
