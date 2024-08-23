@@ -32,4 +32,5 @@ export const authService = {
   login: (username, password) => api.post('login/', { username, password }),
   signup: (username, email, password) =>
     api.post('register/', { username, email, password }),
+  getCurrentUser: () => authApi.get('/current-user/'),
 };
