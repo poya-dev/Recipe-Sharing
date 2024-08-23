@@ -10,6 +10,7 @@ import {
   Button,
   Box,
 } from '@mui/material';
+import { format } from 'date-fns';
 
 const RecipeList = ({ recipes }) => {
   return (
@@ -39,7 +40,7 @@ const RecipeList = ({ recipes }) => {
                 <Typography variant="body2">{recipe.user.username}</Typography>
               </Box>
               <Typography variant="caption" color="text.secondary">
-                Created: {recipe.created_at}
+                Created: {format(new Date(recipe.created_at), 'PPP')}
               </Typography>
               <Box mt={2}>
                 <Button
