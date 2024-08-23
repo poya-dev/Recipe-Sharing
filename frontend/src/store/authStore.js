@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import axios from 'axios';
 
-const API_URL = 'http://127.0.0.1:8000/api/';
+import { authService } from '../services/api';
 
 const useAuthStore = create((set) => ({
   user: null,
@@ -12,13 +12,9 @@ const useAuthStore = create((set) => ({
   login: async (username, password) => {
     set({ loading: true, error: null });
     try {
-      const response = await axios.post(`${API_URL}login/`, {
-        username,
-        password,
-      });
+      const response = await authService.login(username, password);
       const { user, token } = response.data;
       localStorage.setItem('token', token);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       set({ user, isAuthenticated: true, loading: false });
       return true;
     } catch (error) {
@@ -30,14 +26,9 @@ const useAuthStore = create((set) => ({
   signUp: async (username, email, password) => {
     set({ loading: true, error: null });
     try {
-      const response = await axios.post(`${API_URL}/register/`, {
-        username,
-        email,
-        password,
-      });
+      const response = await authService.signup(username, email, password);
       const { user, token } = response.data;
       localStorage.setItem('token', token);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       set({ user, isAuthenticated: true, loading: false });
       return true;
     } catch (error) {
