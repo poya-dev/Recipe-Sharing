@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CssBaseline, Container } from '@mui/material';
 
+import ProtectedRoute from './components/ProtectedRoute';
+import useAuthStore from './store/authStore';
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import Login from './components/Login';
 import SignUp from './components/Sign-Up';
 
 const App = () => {
+  const { checkAuth } = useAuthStore((state) => ({
+    checkAuth: state.checkAuth,
+  }));
+
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
+
   return (
     <Router>
       <CssBaseline />
@@ -15,10 +25,16 @@ const App = () => {
       <Container maxWidth="lg" sx={{ mt: 4 }}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/recipes" element={<p>Recipes</p>} />
-          <Route path="/create-recipe" element={<p>Create Recipe</p>} />
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route
+            path="/my-recipes"
+            element={<ProtectedRoute element={<p>My Recipes</p>} />}
+          />
+          <Route
+            path="/create-recipe"
+            element={<ProtectedRoute element={<p>Create My Recipe</p>} />}
+          />
         </Routes>
       </Container>
     </Router>
