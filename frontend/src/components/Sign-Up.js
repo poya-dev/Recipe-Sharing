@@ -21,7 +21,7 @@ const SignUp = () => {
     e.preventDefault();
     const success = await signUp(username, email, password);
     if (success) {
-      navigate('/login');
+      navigate('/');
     }
   };
 
