@@ -17,6 +17,8 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
 from recipes.views import RecipeViewSet, CommentViewSet
 from users.views import UserViewSet, UserRegistrationView, CurrentUserView
@@ -37,4 +39,4 @@ urlpatterns = [
     path('api/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/current-user/', CurrentUserView.as_view(), name='current_user'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh')
-]
+]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
