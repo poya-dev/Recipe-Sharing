@@ -21,7 +21,6 @@ const App = () => {
   }));
 
   useEffect(() => {
-    console.log(checkAuth);
     checkAuth();
   }, [checkAuth]);
 
