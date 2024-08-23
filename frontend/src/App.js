@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CssBaseline, Container } from '@mui/material';
 
+import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import Login from './components/Login';
 import SignUp from './components/Sign-Up';
@@ -13,7 +14,7 @@ const App = () => {
       <Navbar />
       <Container maxWidth="lg" sx={{ mt: 4 }}>
         <Routes>
-          <Route path="/" element={<p>Home Page</p>} />
+          <Route path="/" element={<Home />} />
           <Route path="/recipes" element={<p>Recipes</p>} />
           <Route path="/create-recipe" element={<p>Create Recipe</p>} />
           <Route path="/login" element={<Login />} />
